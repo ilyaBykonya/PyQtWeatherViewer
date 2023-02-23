@@ -1,0 +1,3 @@
+{
+    "files": ["WeatherLoaders/PersistentCache.py","WeatherLoaders/__init__.py","ApplicationWindow.py","Presentation/WeatherOnCoordinateView.py","WeatherLoaders/WeatherInfo.py","WeatherLoaders/InMemoryCache.py","WeatherLoaders/AbstractLoader.py","Presentation/AutoUpdatableWeatherStorage.py","WeatherLoaders/OpenWeatherLoader.py","Presentation/__init__.py","Presentation/InputLocationDialog.py"]
+}
