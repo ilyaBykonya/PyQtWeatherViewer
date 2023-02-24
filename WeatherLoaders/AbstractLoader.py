@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 from typing import Optional
 from PySide6 import QtPositioning
-from .WeatherInfo import WeatherInfo
+from Utils import WeatherInfo
 
 class AbstractLoader():
     def __init__(self) -> None:

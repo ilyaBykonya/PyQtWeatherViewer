@@ -1,9 +1,10 @@
 # This Python file uses the following encoding: utf-8
 from typing import Optional
 from PySide6 import QtCore, QtPositioning
-from WeatherLoaders import AbstractLoader, WeatherInfo
+from Utils import WeatherInfo
+from .AbstractLoader import AbstractLoader
 
-class AutoUpdatableWeatherStorage(QtCore.QObject):
+class SingleAutoUpdatableCache(QtCore.QObject):
     onValueUpdated = QtCore.Signal()
     def __init__(self, location: QtPositioning.QGeoCoordinate, origin: AbstractLoader, delay: int, parent: QtCore.QObject = None) -> None:
         super().__init__(parent)
@@ -30,3 +31,4 @@ class AutoUpdatableWeatherStorage(QtCore.QObject):
     def __reset_internal_buffer(self, value: Optional[WeatherInfo]) -> None:
         self.__buffer = value
         self.onValueUpdated.emit()
+

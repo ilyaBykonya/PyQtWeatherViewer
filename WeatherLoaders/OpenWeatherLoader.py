@@ -3,8 +3,8 @@ import requests
 from typing import Optional
 from PySide6 import QtCore
 from PySide6 import QtPositioning
-from .WeatherInfo import WeatherInfo
 from .AbstractLoader import AbstractLoader
+from Utils import WeatherInfo, WindInfo
 
 class OpenWeatherLoader(AbstractLoader):
     def __init__(self, api_key: str) -> None:
@@ -12,14 +12,32 @@ class OpenWeatherLoader(AbstractLoader):
 
     def load(self, location: QtPositioning.QGeoCoordinate) -> Optional[WeatherInfo]:
         print(f'Load operation from OpenWeatherLoader [{location.toString()}]')
+        response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?lat={location.latitude()}&lon={location.longitude()}&appid={self.__api_key}').json()
+        return self.weather_from_json(response)
+
+    def weather_from_json(self, json) -> Optional[WeatherInfo]:
         try:
-            response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?lat={location.latitude()}&lon={location.longitude()}&appid={self.__api_key}').json()
-            timestamp = QtCore.QDateTime.fromSecsSinceEpoch(int(response['dt']))
-            temperature = float(response['main']['temp'])
-            coordinate = QtPositioning.QGeoCoordinate(float(response['coord']['lat']), float(response['coord']['lon']))
-            return WeatherInfo(coordinate, timestamp, temperature)
+            timestamp = QtCore.QDateTime.fromSecsSinceEpoch(int(json['dt']))
+            temperature = float(json['main']['temp'])
+            coordinate = QtPositioning.QGeoCoordinate(float(json['coord']['lat']), float(json['coord']['lon']))
+            clouds = float(json['clouds']['all'])
+            wind = WindInfo(float(json['wind']['speed']), float(json['wind']['deg']))
+            humidity = float(json['main']['humidity'])
+            pressure = float(json['main']['pressure'])
+            return WeatherInfo(coordinate, timestamp, temperature, clouds, wind, humidity, pressure)
         except:
             pass
 
-        print('On weather loaded [none]')
         return None
+
+
+
+
+
+
+
+
+
+
+
+

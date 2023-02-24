@@ -3,9 +3,8 @@ from typing import Dict
 from typing import Optional
 from PySide6 import QtCore
 from PySide6 import QtPositioning
-from .WeatherInfo import WeatherInfo
-from .WeatherInfo import compare_coordinates
 from .AbstractLoader import AbstractLoader
+from Utils import WeatherInfo, compare_coordinates
 
 class InMemoryCache(AbstractLoader):
     def __init__(self, origin: AbstractLoader, cache_expiration: QtCore.QDateTime) -> None:

@@ -1,8 +1,6 @@
 # This Python file uses the following encoding: utf-8
 from typing import Optional
 from PySide6 import QtPositioning, QtWidgets, QtCore
-from WeatherLoaders import AbstractLoader, WeatherInfo
-from .AutoUpdatableWeatherStorage import AutoUpdatableWeatherStorage
 
 
 

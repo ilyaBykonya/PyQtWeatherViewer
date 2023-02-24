@@ -1,8 +1,8 @@
 # This Python file uses the following encoding: utf-8
 import sys
-from WeatherLoaders import AbstractLoader, WeatherInfo
+from Utils import WeatherInfo
+from WeatherLoaders import AbstractLoader
 from .InputLocationDialog import InputLocationDialog
 from .WeatherOnCoordinateView import WeatherOnCoordinateView
-from .AutoUpdatableWeatherStorage import AutoUpdatableWeatherStorage
 
 sys.path.append('./Presentation/')
