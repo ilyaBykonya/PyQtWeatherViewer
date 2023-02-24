@@ -8,7 +8,7 @@ class WindInfo:
         self.direction: float = direction
         self.speed: float = speed
 class WeatherInfo:
-    def __init__(self, coordinate: QtPositioning.QGeoCoordinate, timestamp: QtCore.QDateTime, temperature: float, clouds: float, wind: WindInfo, himidity: float, pressure: float):
+    def __init__(self, coordinate: QtPositioning.QGeoCoordinate, timestamp: QtCore.QDateTime, temperature: float, clouds: float, wind: WindInfo, himidity: float, pressure: float, picture: str):
         self.coordinate: QtPositioning.QGeoCoordinate = coordinate
         self.temperature: float = temperature
         self.timestamp: QtCore.QDateTime = timestamp
@@ -16,6 +16,8 @@ class WeatherInfo:
         self.wind: WindInfo = wind
         self.himidity: float = himidity
         self.pressure: float = pressure
+        self.picture: str = picture
+
 
 
 def compare_coordinates(left: QtPositioning.QGeoCoordinate, right: QtPositioning.QGeoCoordinate) -> bool:

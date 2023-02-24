@@ -44,14 +44,14 @@ class WeatherPersistentStorage(QtCore.QObject):
         wind = WindInfo(float(self.__storage.value('wind/speed')), float(self.__storage.value('wind/direction')))
         himidity = float(self.__storage.value('himidity'))
         pressure = float(self.__storage.value('pressure'))
-        weather = WeatherInfo(coordinate, timestamp, temperature, clouds, wind, himidity, pressure)
+        picture = str(self.__storage.value('picture'))
+        weather = WeatherInfo(coordinate, timestamp, temperature, clouds, wind, himidity, pressure, picture)
         self.__storage.endGroup()
         return weather
 
     def __write_to_cache(self, location: QtPositioning.QGeoCoordinate, weather: WeatherInfo) -> WeatherInfo:
         if location is None or weather is None:
             return None
-
 
         self.__storage.beginGroup(self.__coordinate_to_string(location))
         self.__storage.setValue('coordinate', weather.coordinate)
@@ -62,6 +62,7 @@ class WeatherPersistentStorage(QtCore.QObject):
         self.__storage.setValue('wind/direction', weather.wind.direction)
         self.__storage.setValue('himidity', weather.himidity)
         self.__storage.setValue('pressure', weather.pressure)
+        self.__storage.setValue('picture', weather.picture)
         self.__storage.endGroup()
         return self.__read_from_cache(location)
 

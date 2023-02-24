@@ -24,7 +24,8 @@ class OpenWeatherLoader(AbstractLoader):
             wind = WindInfo(float(json['wind']['speed']), float(json['wind']['deg']))
             humidity = float(json['main']['humidity'])
             pressure = float(json['main']['pressure'])
-            return WeatherInfo(coordinate, timestamp, temperature, clouds, wind, humidity, pressure)
+            picture = str(json['weather'][0]['icon'])
+            return WeatherInfo(coordinate, timestamp, temperature, clouds, wind, humidity, pressure, picture)
         except:
             pass
 
